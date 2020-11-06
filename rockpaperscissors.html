@@ -1,0 +1,80 @@
+<html>
+
+    <body>
+
+        <h2 >This is rock, paper, scissor: choose or die.</h2>
+    
+        <button onclick="rockPaperScissor('rock')">rock</button>
+        <button onclick="rockPaperScissor('paper')">paper</button>
+        <button onclick="rockPaperScissor('scissor')">scissor</button>
+
+        <p>User Input:</p>
+        <p id="userInput"></p>
+
+        <p>Cpu Input:</p>
+        <p id="cpuInput"></p>
+
+        <p>Result:</p>
+        <p id="roundResult"></p>
+
+        <script>
+            function rockPaperScissor(userInput) { 
+
+                let cpuInput = getCpuInput(); 
+              
+                let roundResult = checkResult(userInput, cpuInput);
+
+                document.getElementById("cpuInput").innerHTML = cpuInput;
+                document.getElementById("roundResult").innerHTML = roundResult;
+                document.getElementById("userInput").innerHTML = userInput;
+
+            }
+
+            function getCpuInput() {
+                let cpuInput = Math.random(); 
+
+                if (cpuInput <= 0.33333) {
+                    cpuInput = "rock";
+                } else if (cpuInput > 0.33333 && cpuInput <= 0.66666) {
+                    cpuInput = "paper";
+                } else {
+                    cpuInput = "scissor";
+                }
+                return cpuInput;
+            }
+            
+            function checkResult(userInput, cpuInput) {
+                
+                if (userInput == cpuInput) {
+                    return "tie";
+                } 
+                
+                let roundResult;
+
+                switch (userInput) {
+                    
+                    case "rock":
+                        roundResult = cpuInput == "paper" ? "cpu" : "user";
+                        break;
+
+                    case "paper":
+                        roundResult = cpuInput == "scissor" ? "cpu" : "user";
+                        break;
+
+                    case "scissor":
+                        roundResult = cpuInput == "rock" ? "cpu" : "user";
+                        break;
+                }
+
+                return roundResult;
+
+            }
+
+        </script>
+
+
+        
+
+    </body>
+
+</html>
